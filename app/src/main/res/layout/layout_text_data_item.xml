@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView_textDataTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingVertical="4dp"
+        android:text="2020-12-12  20:30:40"
+        android:textSize="14sp"
+        android:textColor="@color/color_gray2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton_textDataUserIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
+        </LinearLayout>
+
+        <!--文字-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_textDataUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周五阵亡"
+                android:paddingVertical="2dp"
+                android:textSize="14sp"
+                android:textColor="@color/color_gray2"/>
+
+            <TextView
+                android:id="@+id/textView_textData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_view_background"
+                android:textColor="@color/color_gray1"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:minHeight="48dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="64dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_textDataPlace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingVertical="4dp"
+        android:text="北京市海淀去颐和园路5号 北京大学"
+        android:textSize="14sp"
+        android:textColor="@color/color_gray2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+
+</LinearLayout>

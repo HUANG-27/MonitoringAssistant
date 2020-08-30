@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="32dp"
+    android:paddingHorizontal="8dp"
+    tools:context=".activity.TextActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:id="@+id/editText_textData"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_view_background"
+            android:inputType="textMultiLine"
+            android:gravity="start"
+            android:textColor="@color/color_text1"
+            android:textSize="16sp"
+            android:autofillHints="无标题"
+            tools:ignore="LabelFor"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_textOk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="确定"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"
+                tools:ignore="ButtonStyle" />
+
+
+            <Button
+                android:id="@+id/button_textCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"
+                tools:ignore="ButtonStyle" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

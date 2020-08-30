@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/icon_map_fill_64"
+        android:title="地图" />
+
+    <item
+        android:id="@+id/navigation_data"
+        android:icon="@drawable/icon_data_fill_green_64"
+        android:title="数据" />
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/icon_user_fill_green_64"
+        android:title="用户" />
+</menu>

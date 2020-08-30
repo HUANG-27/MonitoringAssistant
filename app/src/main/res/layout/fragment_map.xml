@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/color_gray8"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView_mission_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="当前任务："
+                android:textSize="18sp"
+                android:textColor="@color/color_red1"/>
+
+            <TextView
+                android:id="@+id/textView_mission_ctt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="none"
+                android:textSize="18sp"
+                android:textColor="@color/color_red1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.esri.arcgisruntime.mapping.view.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.esri.arcgisruntime.mapping.view.MapView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup_mapType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="8dp">
+
+            <RadioButton
+                android:id="@+id/radioButton_normalMap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="线划地图"
+                android:textSize="12sp"
+                android:textColor="@color/color_gray1"/>
+
+            <RadioButton
+                android:id="@+id/radioButton_satelliteMap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="影像地图"
+                android:textSize="12sp"
+                android:textColor="@color/color_gray1" />
+
+            <RadioButton
+                android:id="@+id/radio_button_terrain_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="地形地图"
+                android:textSize="12sp"
+                android:textColor="@color/color_gray1"/>
+
+        </RadioGroup>
+
+        <ImageButton
+            android:id="@+id/imageButton_getImage"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="160dp"
+            android:background="@drawable/icon_image_green_64"/>
+
+        <RelativeLayout
+            android:id="@+id/rlt_image"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/imageView_tempImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray4"/>
+
+            <ImageButton
+                android:id="@+id/imageButton_closeImageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/icon_close_green_64"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

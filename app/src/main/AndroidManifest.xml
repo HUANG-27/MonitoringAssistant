@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+package="com.example.huang.client">
+    <!-- 定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 拍照、麦克权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 读写权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 其他权限 -->
+    <!--uses-permission android:name="android.permission.READ_PHONE_STATE" /-->
+    <!--uses-permission android:name="android.permission.CALL_PHONE" /-->
+
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:usesCleartextTraffic="true"
+        tools:ignore="AllowBackup">
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <meta-data
+            android:name="com.tianditu.apikey"
+            android:value="4207c105d1b449e416669e6391c5bdb6" />
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.TargetInfoActivity"/>
+        <activity android:name=".activity.MonitorEditActivity" />
+        <activity android:name=".activity.ShowImageActivity" />
+        <activity android:name=".activity.TextActivity" />
+        <activity android:name=".activity.ImageActivity" />
+        <activity android:name=".activity.AudioActivity" />
+        <activity android:name=".activity.VideoActivity" />
+        <activity android:name=".activity.MonitorRegisterActivity" />
+        <activity android:name=".activity.MonitorLoginActivity" />
+        <activity android:name=".activity.TargetDataActivity" />
+    </application>
+
+</manifest>

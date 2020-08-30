@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".activity.MonitorLoginActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:gravity="center_vertical"
+                android:text="身份证号"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"/>
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="32dp"/>
+
+            <EditText
+                android:id = "@+id/editText_loginPhoneNumber"
+                android:background="@drawable/edit_view_background"
+                android:layout_width="196dp"
+                android:layout_height="32dp"
+                android:maxLength="18"
+                android:text="642226199508190439"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:gravity="center_vertical"
+                android:text="登录密码"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"/>
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="32dp"/>
+
+            <EditText
+                android:id = "@+id/editText_loginPassword"
+                android:background="@drawable/edit_view_background"
+                android:layout_width="164dp"
+                android:layout_height="32dp"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"/>
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="32dp"/>
+
+            <LinearLayout
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/imagebutton_loginViewPwd"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/icon_invisible_gray_64"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBox_loginRememberId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="记住账户"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_loginRememberPwd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="记住密码"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_loginOkay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="登  录"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"/>
+
+            <Button
+                android:id="@+id/btn_loginCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取  消"
+                android:textSize="16sp"
+                android:textColor="@color/color_gray1"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

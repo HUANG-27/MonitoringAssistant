@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">协同应急助手</string>
+
+    <!-- ==================权限申请对话框（alertdialog）================== -->
+    <string name="permission_dialog_title">权限申请</string>
+    <string name="permission_dialog_message">为了您能正常使用，需要以下权限</string>
+
+</resources>

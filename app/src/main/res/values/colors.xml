@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#36881F</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="color_text_pressed">#1ffc0b</color>
+    <color name="color_red1">#ff0000</color>
+
+    <color name="color_text1">#111111</color>
+    <color name="color_text2">#444444</color>
+    <color name="color_text3">#777777</color>
+    <color name="color_text4">#AAAAAA</color>
+    <color name="color_text5">#DDDDDD</color>
+
+    <color name="color_black">#000000</color>
+    <color name="color_white">#ffffff</color>
+
+    <color name="color_gray1">#2c2c2c</color>
+    <color name="color_gray2">#515151</color>
+    <color name="color_gray3">#707070</color>
+    <color name="color_gray4">#8a8a8a</color>
+    <color name="color_gray5">#bfbfbf</color>
+    <color name="color_gray6">#CdCdCd</color>
+    <color name="color_gray7">#dbdbdb</color>
+    <color name="color_gray8">#e6e6e6</color>
+
+    <color name="color_green1">#007000</color>
+    <color name="color_green2">#008a00</color>
+    <color name="color_green3">#00bf00</color>
+    <color name="color_green4">#00cd00</color>
+    <color name="color_green5">#00e600</color>
+
+    <!--
+    图标未选中颜色使用gray2
+    背景颜色选用gray8
+    分割线颜色选用gray4
+    图标选中颜色使用green2
+    文字使用gray1
+    !-->
+
+    <!-- ==================权限申请对话框（alertdialog）================== -->
+    <!-- 对话框的填充颜色 -->
+    <color name="permission_dialog_solid_color">#ffffffff</color>
+    <!-- 对话框的标题颜色 -->
+    <color name="permission_dialog_title_color">#000000</color>
+    <!-- 对话框的描述颜色 -->
+    <color name="permission_dialog_message_color">#87000000</color>
+    <!-- 对话框的图标颜色【可根据实际情况修改】 -->
+    <color name="permission_dialog_img_color">#000000</color>
+    <!-- 对话框的按钮背景颜色【可根据实际情况修改】 -->
+    <color name="permission_dialog_btn_bg_color">#07b4a2</color>
+    <!-- 对话框的按钮文字颜色 -->
+    <color name="permission_dialog_btn_text_color">#FFFFFF</color>
+
+</resources>
