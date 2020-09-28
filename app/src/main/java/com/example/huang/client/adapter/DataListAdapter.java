@@ -17,11 +17,7 @@ import com.example.huang.client.R;
 
 import java.io.IOException;
 
-import com.example.huang.client.entity.AudioData;
 import com.example.huang.client.entity.Data;
-import com.example.huang.client.entity.ImageData;
-import com.example.huang.client.entity.TextData;
-import com.example.huang.client.entity.VideoData;
 import com.example.huang.client.config.App2;
 import com.example.huang.client.tool.TimeTool;
 
@@ -32,7 +28,6 @@ public class DataListAdapter extends BaseAdapter {
     private int videoResourceId;
     private LayoutInflater layoutInflater;
     private Context context;
-    private Data data;
 
     //播放audio
     private MediaPlayer mediaPlayer;
@@ -67,26 +62,25 @@ public class DataListAdapter extends BaseAdapter {
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        data = (Data)getItem(position);
+        Data data = (Data) getItem(position);
         View view = null;
         assert data != null;
         switch (data.getType()) {
             //文本数据
             case TEXT_DATA:
-                TextData textData = (TextData) data;
                 View viewTextData = layoutInflater.inflate(textResourceId, null);
                 //采集人头像
                 ImageButton imageButtonTextDataUserIcon = (ImageButton) viewTextData.findViewById(R.id.imageButton_textDataUserIcon);
                 imageButtonTextDataUserIcon.setBackgroundResource(R.drawable.icon_police_green_64);
                 //采集人
                 TextView textViewTextDataUserName = (TextView)viewTextData.findViewById(R.id.textView_textDataUserName);
-                textViewTextDataUserName.setText(textData.getMonitor().getName());
+                textViewTextDataUserName.setText(data.getMonitor().getName());
                 //采集时间
                 TextView textViewTextDataTime = (TextView) viewTextData.findViewById(R.id.textView_textDataTime);
-                textViewTextDataTime.setText(TimeTool.formatDateTime2(textData.getTime()));
+                textViewTextDataTime.setText(TimeTool.formatDateTime2(data.getStartTime()));
                 //数据
                 TextView textViewTextData = (TextView) viewTextData.findViewById(R.id.textView_textData);
-                textViewTextData.setText(textData.getContent());
+                textViewTextData.setText(data.getContent());
                 //采集地点
                 TextView textViewTextDataPlace = (TextView) viewTextData.findViewById(R.id.textView_textDataPlace);
                 //textViewTextDataPlace.setText(textData.getLocation().toString());
@@ -95,17 +89,16 @@ public class DataListAdapter extends BaseAdapter {
                 break;
             //音频数据
             case AUDIO_DATA:
-                AudioData audioData = (AudioData) data;
                 View viewAudioData = layoutInflater.inflate(audioResourceId, null);
                 //采集人头像
                 ImageButton imageButtonAudioDataUserIcon = (ImageButton) viewAudioData.findViewById(R.id.imageButton_audioDataUserIcon);
                 imageButtonAudioDataUserIcon.setBackgroundResource(R.drawable.icon_police_green_64);
                 //采集人
                 TextView textViewAudioDataUserName = (TextView)viewAudioData.findViewById(R.id.textView_audioDataMonitorName);
-                textViewAudioDataUserName.setText(audioData.getMonitor().getName());
+                textViewAudioDataUserName.setText(data.getMonitor().getName());
                 //采集时间
                 TextView textViewAudioDataTime = (TextView) viewAudioData.findViewById(R.id.textView_audioDataTime);
-                textViewAudioDataTime.setText(audioData.getStartTime().toString());
+                textViewAudioDataTime.setText(data.getStartTime().toString());
                 //数据播放按钮
                 ImageButton imageButtonPlayAudio = (ImageButton) viewAudioData.findViewById(R.id.imageButton_playAudioData);
                 imageButtonPlayAudio.setBackgroundResource(R.drawable.icon_audio_green_64);
@@ -115,7 +108,7 @@ public class DataListAdapter extends BaseAdapter {
                         try {
                             if(isPlaying){
                                 //同一个音频，则停止播放
-                                if(audioData.getId().equals(playingAudioId)){
+                                if(data.getId().equals(playingAudioId)){
                                     mediaPlayer.stop();
                                     mediaPlayer.release();
                                     mediaPlayer = null;
@@ -131,22 +124,22 @@ public class DataListAdapter extends BaseAdapter {
                                     mediaPlayer = null;
                                     //播放新音频
                                     mediaPlayer = new MediaPlayer();
-                                    mediaPlayer.setDataSource(context, Uri.parse(audioData.getUri()));
+                                    mediaPlayer.setDataSource(context, Uri.parse(data.getUri()));
                                     mediaPlayer.prepare();
                                     mediaPlayer.start();
 
                                     isPlaying = true;
-                                    playingAudioId = audioData.getId();
+                                    playingAudioId = data.getId();
                                 }
                             }
                             else{
                                 mediaPlayer = new MediaPlayer();
-                                mediaPlayer.setDataSource(context, Uri.parse(audioData.getUri()));
+                                mediaPlayer.setDataSource(context, Uri.parse(data.getUri()));
                                 mediaPlayer.prepare();
                                 mediaPlayer.start();
 
                                 isPlaying = true;
-                                playingAudioId = audioData.getId();
+                                playingAudioId = data.getId();
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -161,20 +154,19 @@ public class DataListAdapter extends BaseAdapter {
                 break;
             //图片数据
             case IMAGE_DATA:
-                ImageData imageData = (ImageData)data;
                 View viewImageData = layoutInflater.inflate(imageResourceId, null);
                 //采集人头像
                 ImageButton imageButtonImageDataUserIcon = (ImageButton) viewImageData.findViewById(R.id.imageButton_imageDataUserIcon);
                 imageButtonImageDataUserIcon.setBackgroundResource(R.drawable.icon_police_green_64);
                 //采集人
                 TextView textViewImageDataUserName = (TextView)viewImageData.findViewById(R.id.textView_imageDataUserName);
-                textViewImageDataUserName.setText(imageData.getMonitor().getName());
+                textViewImageDataUserName.setText(data.getMonitor().getName());
                 //采集时间
                 TextView textViewImageDataTime = (TextView) viewImageData.findViewById(R.id.textView_imageDataTime);
-                textViewImageDataTime.setText(imageData.getTime().toString());
+                textViewImageDataTime.setText(data.getStartTime().toString());
                 //数据
                 ImageView imageViewImageData = (ImageView) viewImageData.findViewById(R.id.imageView_imageData);
-                imageViewImageData.setImageURI(Uri.parse(imageData.getUri()));
+                imageViewImageData.setImageURI(Uri.parse(data.getUri()));
                 //采集地点
                 TextView textViewImageDataPlace = (TextView) viewImageData.findViewById(R.id.textView_imageDataPlace);
                 //textViewImageDataPlace.setText(((ImageData)data).place);
@@ -183,20 +175,19 @@ public class DataListAdapter extends BaseAdapter {
                 break;
             //视频数据
             case VIDEO_DATA:
-                VideoData videoData = (VideoData)data;
                 View viewVideoData = layoutInflater.inflate(videoResourceId, null);
                 //采集人头像
                 ImageButton imageButtonVideoDataUserIcon = (ImageButton) viewVideoData.findViewById(R.id.imageButton_videoDataUserIcon);
                 imageButtonVideoDataUserIcon.setBackgroundResource(R.drawable.icon_police_green_64);
                 //采集人
                 TextView textViewVideoDataUserName = (TextView)viewVideoData.findViewById(R.id.textView_videoDataUserName);
-                textViewVideoDataUserName.setText(((VideoData)data).getMonitor().toString());
+                textViewVideoDataUserName.setText(data.getMonitor().toString());
                 //采集时间
                 TextView textDataVideoDataTime = (TextView) viewVideoData.findViewById(R.id.textData_videoDataTime);
-                textDataVideoDataTime.setText(((VideoData)data).getStartTime().toString());
+                textDataVideoDataTime.setText(data.getStartTime().toString());
                 //数据
                 VideoView videoViewVideoData = (VideoView) viewVideoData.findViewById(R.id.videoView_videoData);
-                videoViewVideoData.setVideoURI(Uri.parse(videoData.getUri()));
+                videoViewVideoData.setVideoURI(Uri.parse(data.getUri()));
                 //采集地点
                 TextView textDataVideoDataPlace = (TextView) viewVideoData.findViewById(R.id.textData_videoDataPlace);
                 //textDataVideoDataPlace.setText(videoData.place);

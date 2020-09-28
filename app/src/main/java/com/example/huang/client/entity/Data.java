@@ -1,19 +1,22 @@
 package com.example.huang.client.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class Data implements Serializable {
-
     private Integer id;
-    private String fileName;
     private DataType type;
-    private Target target;   //数据表述的目标对象
-    private Monitor monitor; //数据采集人
+    private Target target;
+    private Monitor monitor;
+    private String title;
+    private String content;
+    private String uri;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private List<Coordinate> locations;
+    private List<Orientation> orientations;
     private String description;
-
-    public Data() {
-        this.setType(DataType.DEFAULT);
-    }
 
     public Integer getId() {
         return id;
@@ -23,20 +26,20 @@ public class Data implements Serializable {
         this.id = id;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public DataType getType() {
         return type;
     }
 
     public void setType(DataType type) {
         this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Target getTarget() {
@@ -55,6 +58,54 @@ public class Data implements Serializable {
         this.monitor = monitor;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public List<Coordinate> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Coordinate> locations) {
+        this.locations = locations;
+    }
+
+    public List<Orientation> getOrientations() {
+        return orientations;
+    }
+
+    public void setOrientations(List<Orientation> orientations) {
+        this.orientations = orientations;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -62,5 +113,4 @@ public class Data implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

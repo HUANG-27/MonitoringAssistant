@@ -17,6 +17,7 @@ import com.example.huang.client.config.RegisterInfoIO;
 
 import com.example.huang.client.R;
 import com.example.huang.client.entity.Monitor;
+import com.example.huang.client.tool.JSONTool;
 import com.example.huang.client.tool.ValidateTool;
 import com.example.huang.client.config.RegisterInfo;
 
@@ -120,7 +121,7 @@ public class MonitorRegisterActivity extends AppCompatActivity {
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             if(response.body() == null)
                                 Toast.makeText(MonitorRegisterActivity.this, "注册失败！请稍后重试", Toast.LENGTH_LONG).show();
-                            App2.monitor = JSONObject.parseObject(response.body().string(),Monitor.class);
+                            App2.monitor = JSONObject.parseObject(JSONTool.filterJSONString(response.body().string()),Monitor.class);
                             storeUserInfo();
                             finish();
                         }

@@ -17,11 +17,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.example.huang.client.adapter.DataListAdapter;
 
 import com.example.huang.client.R;
-import com.example.huang.client.entity.AudioData;
+import com.example.huang.client.entity.Data;
 import com.example.huang.client.entity.DataType;
-import com.example.huang.client.entity.ImageData;
-import com.example.huang.client.entity.TextData;
-import com.example.huang.client.entity.VideoData;
 import com.example.huang.client.config.App2;
 import com.example.huang.client.tool.DataComparator;
 
@@ -71,7 +68,7 @@ public class TargetDataActivity extends AppCompatActivity {
                     try {
                         if(App2.uploadData.getType() != DataType.TEXT_DATA)
                             return;
-                        TextData textData = (TextData) App2.uploadData;
+                        Data textData = App2.uploadData;
                         upload(textData);
                         dataListAdapter.notifyDataSetChanged();
                     } catch (Exception e) {
@@ -83,7 +80,7 @@ public class TargetDataActivity extends AppCompatActivity {
                     try {
                         if(App2.uploadData.getType() != DataType.IMAGE_DATA)
                             return;
-                        ImageData imageData = (ImageData) App2.uploadData;
+                        Data imageData = App2.uploadData;
                         upload(imageData);
                         dataListAdapter.notifyDataSetChanged();
                     } catch (Exception e) {
@@ -95,7 +92,7 @@ public class TargetDataActivity extends AppCompatActivity {
                     try {
                         if(App2.uploadData.getType() != DataType.AUDIO_DATA)
                             return;
-                        AudioData audioData = (AudioData) App2.uploadData;
+                        Data audioData = App2.uploadData;
                         //TODO
                         dataListAdapter.notifyDataSetChanged();
 
@@ -108,7 +105,7 @@ public class TargetDataActivity extends AppCompatActivity {
                     try {
                         if(App2.uploadData.getType() != DataType.VIDEO_DATA)
                             return;
-                        VideoData videoData = (VideoData) App2.uploadData;
+                        Data videoData = App2.uploadData;
                         //TODO
                         dataListAdapter.notifyDataSetChanged();
                     } catch (Exception e) {
@@ -187,10 +184,7 @@ public class TargetDataActivity extends AppCompatActivity {
                 int size = App2.dataList.size();
                 App2.dataList.clear();;
                 if(App2.focusTarget != null){
-                    getTextData();
-                    getImageData();
-                    getAudioData();
-                    getVideoData();
+                    getData2();
                 }
                 if(App2.dataList.size() > size){
                     dataListAdapter.notifyDataSetChanged();
@@ -201,20 +195,20 @@ public class TargetDataActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void getTextData() {
+    private void getData2() {
         try{
             OkHttpClient client = new OkHttpClient();
             FormBody formBody = new FormBody.Builder()
                     .add("targetId", App2.focusTarget.getId().toString())
                     .build();
             Request request = new Request.Builder()
-                    .url(App2.serverURL + "/text/list")
+                    .url(App2.serverURL + "/data2/list")
                     .post(formBody)
                     .build();
             Response response = client.newCall(request).execute();
             if(response.body() != null){
-                List<TextData> textDataList = JSONArray.parseArray(response.body().string(), TextData.class);
-                App2.dataList.addAll(textDataList);
+                List<Data> dataList = JSONArray.parseArray(response.body().string(), Data.class);
+                App2.dataList.addAll(dataList);
                 App2.dataList.sort(new DataComparator());
             }
         }catch (IOException ex){
@@ -222,77 +216,7 @@ public class TargetDataActivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void getImageData(){
-        try{
-            OkHttpClient client = new OkHttpClient();
-            FormBody formBody = new FormBody.Builder()
-                    .add("targetId", App2.focusTarget.getId().toString())
-                    .build();
-            Request request = new Request.Builder()
-                    .url(App2.serverURL + "/image/list")
-                    .post(formBody)
-                    .build();
-            Response response = client.newCall(request).execute();
-            if(response.body() != null){
-                List<ImageData> imageDataList = JSONArray.parseArray(response.body().string(), ImageData.class);
-                App2.dataList.addAll(imageDataList);
-                App2.dataList.sort(new DataComparator());
-            }
-        }catch (IOException ex){
-            ex.printStackTrace();
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void getAudioData(){
-        try{
-            OkHttpClient client = new OkHttpClient();
-            FormBody formBody = new FormBody.Builder()
-                    .add("targetId", App2.focusTarget.getId().toString())
-                    .build();
-            Request request = new Request.Builder()
-                    .url(App2.serverURL + "/audio/list")
-                    .post(formBody)
-                    .build();
-            Response response = client.newCall(request).execute();
-            if(response.body() != null){
-                List<AudioData> audioDataList = JSONArray.parseArray(response.body().string(), AudioData.class);
-                App2.dataList.addAll(audioDataList);
-                App2.dataList.sort(new DataComparator());
-            }
-        }catch (IOException ex){
-            ex.printStackTrace();
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void getVideoData(){
-        try{
-            OkHttpClient client = new OkHttpClient();
-            FormBody formBody = new FormBody.Builder()
-                    .add("targetId", App2.focusTarget.getId().toString())
-                    .build();
-            Request request = new Request.Builder()
-                    .url(App2.serverURL + "/video/list")
-                    .post(formBody)
-                    .build();
-            Response response = client.newCall(request).execute();
-            if(response.body() != null){
-                List<VideoData> videoDataList = JSONArray.parseArray(response.body().string(), VideoData.class);
-                App2.dataList.addAll(videoDataList);
-                App2.dataList.sort(new DataComparator());
-            }
-        }catch (IOException ex){
-            ex.printStackTrace();
-        }
-    }
-
-    private void upload(TextData textData){
-
-    }
-
-    private void upload(ImageData imageData){
+    private void upload(Data data){
 
     }
 }

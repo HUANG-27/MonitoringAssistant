@@ -11,16 +11,19 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.huang.client.R;
-import com.example.huang.client.entity.TextData;
+import com.example.huang.client.entity.Coordinate;
+import com.example.huang.client.entity.Data;
 import com.example.huang.client.tool.LocateTool;
 import com.example.huang.client.config.App2;
 
 public class TextActivity extends AppCompatActivity {
 
     private EditText editText;
-    private static TextData textData;
+    private static Data textData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +39,15 @@ public class TextActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                textData = new TextData();
+                textData = new Data();
                 textData.setMonitor(App2.monitor);
                 textData.setTarget(App2.focusTarget);
-                textData.setTime(LocalDateTime.now());
-                textData.setLocation(LocateTool.myLocation);
+                LocalDateTime localDateTime = LocalDateTime.now();
+                textData.setStartTime(localDateTime);
+                textData.setEndTime(localDateTime);
+                List<Coordinate> locations = new ArrayList<>();
+                locations.add(LocateTool.myLocation);
+                textData.setLocations(locations);
                 textData.setContent(editText.getText().toString());
 
                 App2.uploadData = textData;

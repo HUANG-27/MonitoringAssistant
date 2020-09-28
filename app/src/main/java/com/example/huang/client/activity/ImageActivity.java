@@ -20,10 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.huang.client.R;
-import com.example.huang.client.entity.ImageData;
+import com.example.huang.client.entity.Coordinate;
+import com.example.huang.client.entity.Data;
+import com.example.huang.client.entity.Orientation;
 import com.example.huang.client.tool.ImageTool;
 import com.example.huang.client.tool.LocateTool;
 import com.example.huang.client.tool.SensorTool;
@@ -39,7 +42,7 @@ public class ImageActivity extends AppCompatActivity implements TextureView.Surf
     private ImageView imageViewViewPicture;
 
     private Camera camera;
-    private static ImageData imageData;
+    private static Data imageData;
     private Bitmap bitmap;
     private final int DEFAULT_CAMERA_ID = 0;
 
@@ -103,7 +106,7 @@ public class ImageActivity extends AppCompatActivity implements TextureView.Surf
             @Override
             public void onClick(View v) {
                 //保存并返回图片
-                ImageTool.saveImage(bitmap, imageData.getFileName());
+                ImageTool.saveImage(bitmap, imageData.getContent());
                 App2.uploadData = imageData;
                 setResult(RESULT_OK);
                 finish();
@@ -126,15 +129,21 @@ public class ImageActivity extends AppCompatActivity implements TextureView.Surf
     // 拍照
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void takePicture() {
-        imageData = new ImageData();
+        imageData = new Data();
         imageData.setMonitor(App2.monitor);
         imageData.setTarget(App2.focusTarget);
-        imageData.setTime(LocalDateTime.now());
-        imageData.setFileName(App2.appDataFolder + File.separatorChar
-                + TimeTool.formatDateTime(imageData.getTime()) + ".mp4");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        imageData.setStartTime(localDateTime);
+        imageData.setEndTime(localDateTime);
+        imageData.setContent(App2.appDataFolder + File.separatorChar
+                + TimeTool.formatDateTime(imageData.getStartTime()) + ".mp4");
         //位置数据
-        imageData.setLocation(LocateTool.myLocation);
-        imageData.setOrientation(SensorTool.getOrientation());
+        List<Coordinate> locations = new ArrayList<>();
+        locations.add(LocateTool.myLocation);
+        imageData.setLocations(locations);
+        List<Orientation> orientations = new ArrayList<>();
+        orientations.add(SensorTool.getOrientation());
+        imageData.setOrientations(orientations);
 
         if (camera != null) {
             camera.takePicture(null, null, new Camera.PictureCallback() {

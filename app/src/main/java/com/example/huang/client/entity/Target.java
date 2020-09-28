@@ -18,13 +18,12 @@ public class Target implements Serializable {
     private String idAddress;   //户籍所在地
     private String address; //现住址
     private Mission mission;
-    private List<Data2> datas;
+    private List<Data> dataList;
     private Coordinate location;
     private String description;
     private String tag;
 
-    public Target() {
-    }
+    public Target() {}
 
     public Integer getId() {
         return id;
@@ -138,12 +137,12 @@ public class Target implements Serializable {
         this.mission = mission;
     }
 
-    public List<Data2> getDatas() {
-        return datas;
+    public List<Data> getDataList() {
+        return dataList;
     }
 
-    public void setDatas(List<Data2> datas) {
-        this.datas = datas;
+    public void setDataList(List<Data> dataList) {
+        this.dataList = dataList;
     }
 
     public String getDescription() {

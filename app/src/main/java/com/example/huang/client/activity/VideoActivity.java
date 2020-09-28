@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.huang.client.R;
-import com.example.huang.client.entity.VideoData;
+import com.example.huang.client.entity.Data;
 import com.example.huang.client.entity.Coordinate;
 import com.example.huang.client.entity.Orientation;
 import com.example.huang.client.tool.LocateTool;
@@ -57,7 +57,7 @@ public class VideoActivity extends AppCompatActivity implements TextureView.Surf
     private boolean isRecording = false;
     private final int RECORDING = 0;
 
-    private static VideoData videoData;
+    private static Data videoData;
     private static int MAX_DURATION = 3600 * 1000;
 
     @Override
@@ -101,13 +101,13 @@ public class VideoActivity extends AppCompatActivity implements TextureView.Surf
                     layoutPlayVideo.setVisibility(View.VISIBLE);
                     //加载录制的视频
                     videoView.setVideoURI(Uri.fromFile(
-                            new File(videoData.getFileName())));
+                            new File(videoData.getContent())));
                 } else {
-                    videoData = new VideoData();
+                    videoData = new Data();
                     videoData.setMonitor(App2.monitor);
                     videoData.setTarget(App2.focusTarget);
                     videoData.setStartTime(LocalDateTime.now());
-                    videoData.setFileName(App2.appDataFolder + File.separatorChar
+                    videoData.setContent(App2.appDataFolder + File.separatorChar
                             + TimeTool.formatDateTime(videoData.getStartTime()) + ".mp4");
                     //位置数据
                     locations = new ArrayList<>();
@@ -149,7 +149,7 @@ public class VideoActivity extends AppCompatActivity implements TextureView.Surf
             @Override
             public void onClick(View v) {
                 //删除文件
-                String filePath = videoData.getFileName();
+                String filePath = videoData.getContent();
                 File file = new File(filePath);
                 if(file.exists())
                     file.delete();
@@ -247,7 +247,7 @@ public class VideoActivity extends AppCompatActivity implements TextureView.Surf
             mediaRecorder.setOrientationHint(90);//设置视频的角度
             mediaRecorder.setMaxDuration(3600 * 1000);//设置最大录制时间
             //mediaRecorder.setPreviewDisplay(textureView);
-            mediaRecorder.setOutputFile(videoData.getFileName());//设置文件保存路径
+            mediaRecorder.setOutputFile(videoData.getContent());//设置文件保存路径
 
             mediaRecorder.prepare();
             mediaRecorder.start();
@@ -297,7 +297,7 @@ public class VideoActivity extends AppCompatActivity implements TextureView.Surf
                     layoutRecordVideo.setVisibility(View.INVISIBLE);
                     layoutPlayVideo.setVisibility(View.VISIBLE);
                     //加载录制的视频
-                    videoView.setVideoPath(videoData.getFileName());
+                    videoView.setVideoPath(videoData.getContent());
 
                     handlerRecordVideo.removeMessages(RECORDING);
                 }

@@ -5,6 +5,7 @@ import android.os.Environment;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.huang.client.entity.Data;
 import com.example.huang.client.entity.Monitor;
 import com.example.huang.client.entity.Target;
 
@@ -15,7 +16,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.example.huang.client.entity.Data;
 import com.example.huang.client.tool.JSONTool;
 
 import org.jetbrains.annotations.NotNull;

@@ -20,8 +20,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.huang.client.R;
-import com.example.huang.client.entity.AudioData;
 import com.example.huang.client.entity.Coordinate;
+import com.example.huang.client.entity.Data;
+import com.example.huang.client.entity.DataType;
 import com.example.huang.client.tool.LocateTool;
 import com.example.huang.client.config.App2;
 import com.example.huang.client.tool.TimeTool;
@@ -53,7 +54,7 @@ public class AudioActivity extends AppCompatActivity {
     private boolean isPlaying = false;
     private final int PLAYING = 1;
 
-    private AudioData audioData;
+    private Data audioData;
     //最大时常2小时
     private final int MAX_DURATION = 3600 * 1000;    //单位：ms
     private static int AUDIO_DURATION = 0;          //单位：ms
@@ -101,11 +102,12 @@ public class AudioActivity extends AppCompatActivity {
                     textViewAudioDuration.setText(formatDuration(AUDIO_DURATION));
                 } else {
                     //音频数据
-                    audioData = new AudioData();
+                    audioData = new Data();
+                    audioData.setType(DataType.AUDIO_DATA);
                     audioData.setMonitor(App2.monitor);
                     audioData.setTarget(App2.focusTarget);
                     audioData.setStartTime(LocalDateTime.now());
-                    audioData.setFileName(App2.appDataFolder + File.separatorChar
+                    audioData.setContent(App2.appDataFolder + File.separatorChar
                             + TimeTool.formatDateTime(audioData.getStartTime()) + ".mp4");
                     ////位置数据，记录位置的线程
                     locations = new ArrayList<>();
@@ -196,7 +198,7 @@ public class AudioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //删除文件
-                File file = new File(audioData.getFileName());
+                File file = new File(audioData.getContent());
                 if (file.exists())
                     file.delete();
                 audioData = null;
@@ -221,7 +223,7 @@ public class AudioActivity extends AppCompatActivity {
             //最大时长
             mediaRecorder.setMaxDuration(MAX_DURATION);
             //文件存储
-            mediaRecorder.setOutputFile(audioData.getFileName());
+            mediaRecorder.setOutputFile(audioData.getContent());
 
             mediaRecorder.prepare();
             mediaRecorder.start();
@@ -247,7 +249,7 @@ public class AudioActivity extends AppCompatActivity {
         if (mediaPlayer == null)
             mediaPlayer = new MediaPlayer();
         try {
-            File file = new File(audioData.getFileName());
+            File file = new File(audioData.getContent());
             mediaPlayer.setDataSource(file.getPath());
             mediaPlayer.prepare();
         } catch (Exception e) {
