@@ -17,7 +17,7 @@ import com.example.huang.client.config.RegisterInfoIO;
 
 import com.example.huang.client.R;
 import com.example.huang.client.entity.Monitor;
-import com.example.huang.client.tool.Tools;
+import com.example.huang.client.tool.JSONTool;
 import com.example.huang.client.tool.ValidateTool;
 import com.example.huang.client.config.RegisterInfo;
 
@@ -109,7 +109,7 @@ public class MonitorLoginActivity extends AppCompatActivity {
                             if(response.body() == null)
                                 Toast.makeText(MonitorLoginActivity.this, "注册失败！请稍后重试", Toast.LENGTH_LONG).show();
 
-                            App2.monitor = JSONObject.parseObject(Tools.filterJSONString(response.body().string()), Monitor.class);
+                            App2.monitor = JSONObject.parseObject(JSONTool.filterJSONString(response.body().string()), Monitor.class);
 
                             //存储登录信息
                             storeUserInfo();

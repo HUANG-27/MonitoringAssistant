@@ -1,5 +1,6 @@
 package com.example.huang.client.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Mission {
@@ -7,9 +8,11 @@ public class Mission {
     private Integer id;
     private String name;
     private MissionType type;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private List<Monitor> monitors;
-    private Target target;
-    private UAV uav;
+    private List<Target> targets;
+    private List<UAV> uavs;
 
     public Mission(){
     }
@@ -38,6 +41,22 @@ public class Mission {
         this.type = type;
     }
 
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
     public List<Monitor> getMonitors() {
         return monitors;
     }
@@ -46,19 +65,19 @@ public class Mission {
         this.monitors = monitors;
     }
 
-    public Target getTarget() {
-        return target;
+    public List<Target> getTargets() {
+        return targets;
     }
 
-    public void setTarget(Target target) {
-        this.target = target;
+    public void setTargets(List<Target> targets) {
+        this.targets = targets;
     }
 
-    public UAV getUav() {
-        return uav;
+    public List<UAV> getUavs() {
+        return uavs;
     }
 
-    public void setUav(UAV uav) {
-        this.uav = uav;
+    public void setUavs(List<UAV> uavs) {
+        this.uavs = uavs;
     }
 }

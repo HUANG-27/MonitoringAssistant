@@ -169,7 +169,7 @@ public class MapFragment extends Fragment {
             public void onClick(View v) {
                 layoutImage.setVisibility(View.VISIBLE);
                 imageViewUAVImage.setImageURI(
-                        Uri.parse(App2.monitor.getMission().getUav().getImageUri()));
+                        Uri.parse(App2.monitor.getMission().getUavs().get(0).getImageUri()));
             }
         });
         imageButtonCloseImageView.setOnClickListener(new View.OnClickListener() {
@@ -231,7 +231,7 @@ public class MapFragment extends Fragment {
             imageButtonGetUAVImage.setVisibility(View.INVISIBLE);
         } else{
             switch (App2.monitor.getMission().getType()){
-                case ROUND_UP:
+                case 围捕:
                     //1
                     textViewMissionTip.setText("围捕任务：");
                     textViewMissionTip.setTextColor(R.color.color_red1);
@@ -253,7 +253,7 @@ public class MapFragment extends Fragment {
                     //3
                     imageButtonGetUAVImage.setVisibility(View.VISIBLE);
                     break;
-                case SEARCH:
+                case 搜索:
                     //1
                     textViewMissionTip.setText("搜索任务：");
                     textViewMissionTip.setTextColor(R.color.color_red1);
@@ -355,15 +355,16 @@ public class MapFragment extends Fragment {
         markerSymbol.addDoneLoadingListener(new Runnable() {
             @Override
             public void run() {
-                Target target = App2.monitor.getMission().getTarget();
-                if(target == null)
+                if(App2.monitor.getMission().getTargets() == null)
                     return;
-                if(target.getLocation() == null)
-                    return;
-                Point point = new Point(target.getLocation().getLon(), target.getLocation().getLat(),spatialReferenceLL);
-                Point proPoint = (Point) GeometryEngine.project(point, spatialReferenceLL);
-                Graphic graphic = new Graphic(proPoint, markerSymbol);
-                locationOverlay.getGraphics().add(graphic);
+                for (Target target: App2.monitor.getMission().getTargets()) {
+                    if(target.getLocation() != null){
+                        Point point = new Point(target.getLocation().getLon(), target.getLocation().getLat(),spatialReferenceLL);
+                        Point proPoint = (Point) GeometryEngine.project(point, spatialReferenceLL);
+                        Graphic graphic = new Graphic(proPoint, markerSymbol);
+                        locationOverlay.getGraphics().add(graphic);
+                    }
+                }
             }
         });
     }
@@ -380,13 +381,16 @@ public class MapFragment extends Fragment {
         markerSymbol.addDoneLoadingListener(new Runnable() {
             @Override
             public void run() {
-                UAV uav = App2.monitor.getMission().getUav();
-                if(uav == null)
+                if(App2.monitor.getMission().getUavs() == null)
                     return;
-                Point point = new Point(uav.getLocation().getLon(), uav.getLocation().getLat(), spatialReferenceLL);
-                Point proPoint = (Point) GeometryEngine.project(point, spatialReferencePro);
-                Graphic graphic = new Graphic(proPoint, markerSymbol);
-                locationOverlay.getGraphics().add(graphic);
+                for(UAV uav: App2.monitor.getMission().getUavs()){
+                    if(uav.getLocation()!=null){
+                        Point point = new Point(uav.getLocation().getLon(), uav.getLocation().getLat(), spatialReferenceLL);
+                        Point proPoint = (Point) GeometryEngine.project(point, spatialReferencePro);
+                        Graphic graphic = new Graphic(proPoint, markerSymbol);
+                        locationOverlay.getGraphics().add(graphic);
+                    }
+                }
             }
         });
     }

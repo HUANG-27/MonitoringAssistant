@@ -16,7 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.example.huang.client.entity.Data;
-import com.example.huang.client.tool.Tools;
+import com.example.huang.client.tool.JSONTool;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -174,7 +174,7 @@ public class App2 {
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 if(response.body() == null)
                     return;
-                App2.monitor = JSONObject.parseObject(Tools.filterJSONString(response.body().string()), Monitor.class);
+                App2.monitor = JSONObject.parseObject(JSONTool.filterJSONString(response.body().string()), Monitor.class);
 //                if(App2.monitor.getMission() != null){
 //                    App2.targetList = new ArrayList<>();
 //                    App2.targetList.add(App2.monitor.getMission().getTarget());
@@ -192,7 +192,7 @@ public class App2 {
             return;
         if(App2.monitor.getMission()!=null){
             App2.targetList = new ArrayList<>();
-            App2.targetList.add(App2.monitor.getMission().getTarget());
+            App2.targetList.addAll(App2.monitor.getMission().getTargets());
         }
         //下载
         OkHttpClient client = new OkHttpClient();
@@ -209,7 +209,7 @@ public class App2 {
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 if(response.body() == null)
                     return;
-                App2.targetList = JSONArray.parseArray(Tools.filterJSONString(response.body().string()), Target.class);
+                App2.targetList = JSONArray.parseArray(JSONTool.filterJSONString(response.body().string()), Target.class);
             }
         });
     }

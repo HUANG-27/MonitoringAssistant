@@ -7,8 +7,8 @@ public class UAV implements Serializable {
     private String id;
     private String name;
     private String model;
-
     private boolean active;
+    private Mission mission;
     private Coordinate location;
     private Orientation orientation;
     private String imageUri;
@@ -46,6 +46,14 @@ public class UAV implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Mission getMission() {
+        return mission;
+    }
+
+    public void setMission(Mission mission) {
+        this.mission = mission;
     }
 
     public Coordinate getLocation() {

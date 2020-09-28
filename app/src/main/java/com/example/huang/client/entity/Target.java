@@ -1,6 +1,7 @@
 package com.example.huang.client.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Target implements Serializable {
 
@@ -16,6 +17,8 @@ public class Target implements Serializable {
     private Double weight;   //体重
     private String idAddress;   //户籍所在地
     private String address; //现住址
+    private Mission mission;
+    private List<Data2> datas;
     private Coordinate location;
     private String description;
     private String tag;
@@ -125,6 +128,22 @@ public class Target implements Serializable {
 
     public void setLocation(Coordinate location) {
         this.location = location;
+    }
+
+    public Mission getMission() {
+        return mission;
+    }
+
+    public void setMission(Mission mission) {
+        this.mission = mission;
+    }
+
+    public List<Data2> getDatas() {
+        return datas;
+    }
+
+    public void setDatas(List<Data2> datas) {
+        this.datas = datas;
     }
 
     public String getDescription() {
