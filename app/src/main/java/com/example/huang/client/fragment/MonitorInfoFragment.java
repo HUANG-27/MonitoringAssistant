@@ -22,10 +22,12 @@ import com.example.huang.client.R;
 import com.example.huang.client.activity.MonitorRegisterActivity;
 
 import com.example.huang.client.config.App2;
+import com.example.huang.client.tool.JSONTool;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -112,7 +114,7 @@ public class MonitorInfoFragment extends Fragment {
                         .add("id", App2.monitor.getId().toString())
                         .build();
                 Request request = new Request.Builder()
-                        .url(App2.serverURL + "/logout")
+                        .url(App2.serverURL + "/monitor/logout")
                         .post(formBody)
                         .build();
                 client.newCall(request).enqueue(new Callback() {
@@ -123,9 +125,10 @@ public class MonitorInfoFragment extends Fragment {
 
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        Boolean res = Boolean.valueOf(response.body().string());
+                        Boolean res = Boolean.parseBoolean(JSONTool.filterJSONString(response.body().string()));
                         if(res){
                             App2.monitor = null;
+                            App2.targetList = new ArrayList<>();
                             handler.sendEmptyMessage(0);
                         }
                     }
